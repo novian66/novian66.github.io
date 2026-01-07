@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Sistem Prediksi R&D — Produk Bulu Mata</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  margin:0;
+  background:#f4f6fc;
+  color:#222;
+}
+
+header{
+  background:#1e293b;
+  color:#fff;
+  padding:20px 30px;
+}
+
+nav{
+  background:#0f172a;
+  color:#fff;
+  padding:10px 30px;
+  display:flex;
+  gap:20px;
+}
+
+nav a{
+  color:#cbd5f5;
+  text-decoration:none;
+}
+
+.container{
+  padding:25px 30px;
+}
+
+.card{
+  background:#fff;
+  border-radius:10px;
+  padding:20px;
+  margin-bottom:20px;
+  box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+h2{
+  margin-top:0;
+  color:#111827;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:15px;
+}
+
+input, select, textarea{
+  width:100%;
+  padding:10px;
+  border-radius:6px;
+  border:1px solid #ccc;
+  margin-top:5px;
+}
+
+button{
+  background:#2563eb;
+  color:#fff;
+  padding:12px 18px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  margin-top:15px;
+}
+
+.badge{
+  padding:6px 10px;
+  border-radius:8px;
+  font-size:13px;
+  color:#fff;
+}
+
+.high{ background:#dc2626;}
+.mid{ background:#f97316;}
+.low{ background:#16a34a;}
+
+.footer{
+  text-align:center;
+  padding:20px;
+  font-size:13px;
+  color:#6b7280;
+}
+
+</style>
+
+<script>
+function mockPredict(){
+
+document.getElementById("result-section").style.display="block";
+
+document.getElementById("risk1").innerHTML="Bulu mata mudah lepas (68%)";
+document.getElementById("risk2").innerHTML="Rasa kurang nyaman / agak keras (42%)";
+document.getElementById("risk3").innerHTML="Warna sedikit memudar (15%)";
+
+document.getElementById("rec1").innerHTML="Gunakan Lem Y sebagai pengganti Lem X";
+document.getElementById("rec2").innerHTML="Tambahkan proses curing selama 10–15 detik";
+document.getElementById("rec3").innerHTML="Pertimbangkan soft-touch coating pada material knitting A";
+
+document.getElementById("score").innerHTML="Perkiraan Tingkat Keberhasilan: 87%";
+
+}
+</script>
+
+</head>
+<body>
+
+<header>
+  <h1>Sistem Prediksi R&D — Produk Bulu Mata</h1>
+  <p>Memprediksi potensi masalah & rekomendasi solusi sebelum uji fisik dilakukan</p>
+</header>
+
+
+<div class="container">
+
+  <div class="card">
+    <h2>🆕 Informasi Produk</h2>
+
+    <div class="grid">
+      <div>
+        <label>Kode Produk</label>
+        <input placeholder="contoh: BM-T 6322">
+      </div>
+
+      <div>
+        <label>Jenis Produk</label>
+        <select>
+          <option>Strip Lash</option>
+          <option>Cluster Lash</option>
+          <option>Individual Lash</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Material Utama</label>
+        <input placeholder="contoh: Knitting A">
+      </div>
+
+      <div>
+        <label>Lem / Adhesive</label>
+        <input placeholder="contoh: Lem X">
+      </div>
+
+      <div>
+        <label>Formula / Coating</label>
+        <input placeholder="contoh: Rumus C">
+      </div>
+    </div>
+
+    <button onclick="mockPredict()">🔮 Hasilkan Prediksi AI</button>
+  </div>
+
+
+
+  <div class="card" id="result-section" style="display:none">
+
+    <h2>⚠️ Prediksi Potensi Masalah</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <span class="badge high">RISIKO TINGGI</span>
+        <h3 id="risk1"></h3>
+      </div>
+
+      <div class="card">
+        <span class="badge mid">RISIKO SEDANG</span>
+        <h3 id="risk2"></h3>
+      </div>
+
+      <div class="card">
+        <span class="badge low">RISIKO RENDAH</span>
+        <h3 id="risk3"></h3>
+      </div>
+
+    </div>
+
+    <hr>
+
+    <h2>🛠 Rekomendasi Tindakan dari AI</h2>
+
+    <ul>
+      <li id="rec1"></li>
+      <li id="rec2"></li>
+      <li id="rec3"></li>
+    </ul>
+
+    <div class="card">
+      <h3 id="score"></h3>
+      <p><i>Catatan: Prediksi ini berdasarkan pola historis data R&D.</i></p>
+    </div>
+
+  </div>
+
+
+  <div class="card">
+    <h2>📚 Contoh Data Basis Pengetahuan</h2>
+    <p><b>Material:</b> Knitting A | <b>Lem:</b> Lem X</p>
+    <p><b>Masalah Umum:</b> Bulu mata mudah lepas</p>
+    <p><b>Solusi Efektif:</b> Mengganti Lem Y + proses curing 10–15 detik</p>
+  </div>
+
+</div>
+
+
+<div class="footer">
+  Mockup Sistem Prediksi R&D — Produk Bulu Mata • Tampilan Demo Saja (UI)
+</div>
+
+</body>
+</html>
