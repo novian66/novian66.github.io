@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mockup Data Governance & Quality — R&D AI Eyelash</title>
+  <style>
+    :root{
+      --bg:#f5f7ff;
+      --card:#ffffff;
+      --ink:#0f172a;
+      --muted:#64748b;
+      --line:#e2e8f0;
+      --primary:#2563eb;
+      --primary-2:#1d4ed8;
+      --good:#16a34a;
+      --warn:#f97316;
+      --bad:#dc2626;
+      --shadow:0 10px 25px rgba(2,6,23,.08);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, Helvetica, sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+    }
+    header{
+      background:linear-gradient(135deg,#0f172a,#1e293b);
+      color:#fff;
+      padding:22px 24px;
+      position:sticky;
+      top:0;
+      z-index:20;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    header .row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .brand{
+      display:flex; gap:12px; align-items:center;
+    }
+    .logo{
+      width:42px;height:42px;border-radius:12px;
+      background:rgba(255,255,255,.12);
+      display:grid;place-items:center;
+      font-weight:800;
+    }
+    .brand h1{
+      font-size:16px;margin:0;line-height:1.2;
+    }
+    .brand p{
+      margin:0;font-size:12px;color:rgba(255,255,255,.75)
+    }
+    .header-actions{
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+    }
+    .pill{
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.18);
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:12px;
+      color:#fff;
+      display:flex;gap:8px;align-items:center;
+    }
+    .btn{
+      border:none;
+      background:var(--primary);
+      color:#fff;
+      padding:10px 14px;
+      border-radius:999px;
+      font-weight:700;
+      cursor:pointer;
+    }
+    .btn:hover{background:var(--primary-2)}
+    .btn.secondary{
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.18);
+    }
+    .layout{
+      display:grid;
+      grid-template-columns:280px 1fr;
+      gap:18px;
+      padding:18px;
+      max-width:1280px;
+      margin:0 auto;
+    }
+    aside{
+      position:sticky;
+      top:98px;
+      align-self:start;
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:14px;
+      box-shadow:var(--shadow);
+    }
+    .nav-title{
+      font-size:12px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      margin:6px 8px 10px;
+    }
+    .nav a{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:12px;
+      text-decoration:none;
+      color:var(--ink);
+      border:1px solid transparent;
+    }
+    .nav a:hover{background:#f1f5f9}
+    .nav a.active{
+      background:#eff6ff;
+      border-color:#bfdbfe;
+      color:#0b3aa6;
+      font-weight:800;
+    }
+    .tag{
+      font-size:11px;
+      padding:4px 8px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      color:var(--muted);
+    }
+    main{min-width:0}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:14px;
+    }
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:14px;
+      min-height:60px;
+    }
+    .card h2{
+      margin:0 0 6px;
+      font-size:14px;
+    }
+    .card p{
+      margin:0;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.55;
+    }
+    .kpi{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:10px;
+    }
+    .kpi .value{font-size:26px; font-weight:900; letter-spacing:-.02em}
+    .kpi .label{font-size:12px;color:var(--muted);margin-top:4px}
+    .status{
+      font-size:11px;
+      font-weight:800;
+      padding:5px 10px;
+      border-radius:999px;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      border:1px solid var(--line);
+      color:var(--muted);
+      background:#f8fafc;
+    }
+    .status.good{border-color:#bbf7d0;background:#f0fdf4;color:#166534}
+    .status.warn{border-color:#fed7aa;background:#fff7ed;color:#9a3412}
+    .status.bad{border-color:#fecaca;background:#fef2f2;color:#991b1b}
+    .icon{
+      width:10px;height:10px;border-radius:999px;background:currentColor;
+      display:inline-block;
+    }
+    .span-3{grid-column:span 3}
+    .span-4{grid-column:span 4}
+    .span-5{grid-column:span 5}
+    .span-6{grid-column:span 6}
+    .span-7{grid-column:span 7}
+    .span-8{grid-column:span 8}
+    .span-12{grid-column:span 12}
+    @media(max-width:1000px){
+      .layout{grid-template-columns:1fr}
+      aside{position:relative;top:0}
+    }
+    .tabs{
+      display:flex; gap:8px; flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+    .tab{
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--ink);
+      padding:8px 10px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:800;
+      font-size:12px;
+    }
+    .tab.active{
+      background:#eff6ff;
+      border-color:#bfdbfe;
+      color:#0b3aa6;
+    }
+    .toolbar{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;
+      margin:10px 0 8px;
+    }
+    .search{
+      flex:1;
+      min-width:240px;
+      display:flex; gap:10px; align-items:center;
+      border:1px solid var(--line);
+      background:#fff;
+      border-radius:999px;
+      padding:10px 12px;
+    }
+    .search input{
+      border:none; outline:none; width:100%;
+      font-size:13px;
+    }
+    .actions{
+      display:flex; gap:10px; flex-wrap:wrap;
+    }
+    .btn-light{
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:#fff;
+      font-weight:800;
+      cursor:pointer;
+      font-size:12px;
+      color:var(--ink);
+    }
+    .btn-light:hover{background:#f8fafc}
+    table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
+      border-radius:14px;
+      border:1px solid var(--line);
+    }
+    th,td{
+      padding:10px 10px;
+      font-size:12px;
+      border-bottom:1px solid var(--line);
+      vertical-align:top;
+    }
+    th{
+      text-align:left;
+      background:#f8fafc;
+      font-size:11px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.06em;
+    }
+    tr:last-child td{border-bottom:none}
+    .pill-mini{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:4px 8px;border-radius:999px;
+      font-size:11px;font-weight:900;
+      border:1px solid var(--line);
+      background:#fff;
+    }
+    .pill-mini.good{border-color:#bbf7d0;background:#f0fdf4;color:#166534}
+    .pill-mini.warn{border-color:#fed7aa;background:#fff7ed;color:#9a3412}
+    .pill-mini.bad{border-color:#fecaca;background:#fef2f2;color:#991b1b}
+    .muted{color:var(--muted)}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace}
+    .right{text-align:right}
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:14px;
+    }
+    @media(max-width:1100px){
+      .split{grid-template-columns:1fr}
+    }
+    .hint{
+      border:1px dashed #cbd5e1;
+      background:#f8fafc;
+      padding:10px;
+      border-radius:14px;
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.55;
+    }
+    .mini-card{
+      border:1px solid var(--line);
+      background:#fff;
+      border-radius:14px;
+      padding:12px;
+    }
+    .mini-card h3{
+      margin:0 0 6px;
+      font-size:12px;
+    }
+    .mini-card p{margin:0;color:var(--muted);font-size:12px;line-height:1.55}
+    .badge{
+      font-size:11px;
+      font-weight:900;
+      padding:4px 8px;
+      border-radius:999px;
+      background:#0f172a;
+      color:#fff;
+      display:inline-flex;
+      gap:8px;align-items:center;
+    }
+    .badge.blue{background:#1d4ed8}
+    .badge.gray{background:#334155}
+    .badge.green{background:#15803d}
+    .badge.orange{background:#c2410c}
+    .badge.red{background:#b91c1c}
+    .footer{
+      max-width:1280px;
+      margin:0 auto;
+      padding:0 18px 18px;
+      color:var(--muted);
+      font-size:12px;
+    }
+    .hide{display:none}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="row">
+    <div class="brand">
+      <div class="logo">AI</div>
+      <div>
+        <h1>Data Governance & Quality Control</h1>
+        <p>Mockup fitur untuk memastikan data R&D rapi, konsisten, dan siap training AI (Hybrid ML+NLP)</p>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <div class="pill"><span class="icon"></span> Status: <b>Siap Retrain</b></div>
+      <button class="btn secondary" onclick="toast('Laporan kualitas dataset diexport (demo).')">Export Laporan</button>
+      <button class="btn" onclick="toast('Retraining dijadwalkan (demo).')">Jadwalkan Retraining</button>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+
+  <aside>
+    <div class="nav-title">Menu Governance</div>
+    <div class="nav">
+      <a class="active" href="#" onclick="showView('dashboard')">Dashboard Kualitas <span class="tag">QC</span></a>
+      <a href="#" onclick="showView('master')">Master Data <span class="tag">Data</span></a>
+      <a href="#" onclick="showView('monitor')">Monitoring Dataset <span class="tag">ML</span></a>
+      <a href="#" onclick="showView('schedule')">Retraining Schedule <span class="tag">Ops</span></a>
+    </div>
+
+    <div class="nav-title" style="margin-top:14px;">Ringkasan Risiko</div>
+    <div class="hint">
+      <b>Tujuan modul ini:</b><br/>
+      1) Kontrol istilah material (knitting/lem/formula)<br/>
+      2) Kontrol label masalah & solusi<br/>
+      3) Cek missing value, imbalance label, duplikasi<br/>
+      4) Tentukan kapan model AI perlu retraining
+    </div>
+  </aside>
+
+  <main>
+    <!-- DASHBOARD VIEW -->
+    <section id="view-dashboard">
+      <div class="grid">
+        <div class="card span-3">
+          <div class="kpi">
+            <div>
+              <div class="value">1.240</div>
+              <div class="label">Total Kasus R&D</div>
+            </div>
+            <span class="status good"><span class="icon"></span> GOOD</span>
+          </div>
+        </div>
+        <div class="card span-3">
+          <div class="kpi">
+            <div>
+              <div class="value">3,1%</div>
+              <div class="label">Missing Value</div>
+            </div>
+            <span class="status warn"><span class="icon"></span> PERLU CEK</span>
+          </div>
+        </div>
+        <div class="card span-3">
+          <div class="kpi">
+            <div>
+              <div class="value">14</div>
+              <div class="label">Istilah Tidak Konsisten</div>
+            </div>
+            <span class="status warn"><span class="icon"></span> NORMALIZE</span>
+          </div>
+        </div>
+        <div class="card span-3">
+          <div class="kpi">
+            <div>
+              <div class="value">9</div>
+              <div class="label">Duplikasi Kasus</div>
+            </div>
+            <span class="status bad"><span class="icon"></span> FIX</span>
+          </div>
+        </div>
+
+        <div class="card span-7">
+          <h2>📌 Governance Rules Aktif</h2>
+          <p>Aturan untuk memastikan data R&D konsisten sebelum training/retraining ML.</p>
+          <div class="toolbar">
+            <div class="search">
+              🔎 <input placeholder="Cari aturan... contoh: Lem X / Knitting A / Rumus C" />
+            </div>
+            <div class="actions">
+              <button class="btn-light" onclick="toast('Aturan baru dibuat (demo).')">+ Tambah Aturan</button>
+              <button class="btn-light" onclick="toast('Aturan diterapkan ke dataset (demo).')">Terapkan Normalisasi</button>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Area</th>
+                <th>Aturan</th>
+                <th>Contoh Variasi</th>
+                <th>Output Standar</th>
+                <th class="right">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>Material</b></td>
+                <td>Normalisasi penulisan knitting</td>
+                <td class="mono muted">Knitting-A, knit A, knitting a</td>
+                <td class="mono"><b>Knitting A</b></td>
+                <td class="right"><span class="pill-mini good">Aktif</span></td>
+              </tr>
+              <tr>
+                <td><b>Lem</b></td>
+                <td>Kontrol istilah lem</td>
+                <td class="mono muted">LemX, Lem X, Lem-X</td>
+                <td class="mono"><b>Lem X</b></td>
+                <td class="right"><span class="pill-mini good">Aktif</span></td>
+              </tr>
+              <tr>
+                <td><b>Formula</b></td>
+                <td>Validasi kode formula</td>
+                <td class="mono muted">RumusC, Formula C</td>
+                <td class="mono"><b>Rumus C</b></td>
+                <td class="right"><span class="pill-mini warn">Review</span></td>
+              </tr>
+              <tr>
+                <td><b>Label Masalah</b></td>
+                <td>Synonym mapping (narasi → label)</td>
+                <td class="mono muted">lepas, copot, tidak menempel</td>
+                <td class="mono"><b>mudah_lepas</b></td>
+                <td class="right"><span class="pill-mini good">Aktif</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card span-5">
+          <h2>📊 Kualitas Dataset (Ringkas)</h2>
+          <p>Gambaran cepat apakah dataset siap untuk retraining.</p>
+          <div style="margin-top:10px; display:grid; gap:10px;">
+            <div class="mini-card">
+              <div class="badge orange">Missing Value</div>
+              <p style="margin-top:8px">
+                Kolom paling banyak kosong: <b>formula_coating</b> (7,8%)<br/>
+                Saran: gunakan default “<span class="mono">unknown</span>” atau wajibkan pengisian.
+              </p>
+            </div>
+            <div class="mini-card">
+              <div class="badge red">Duplikasi</div>
+              <p style="margin-top:8px">
+                Ditemukan duplikasi pada kombinasi: <b>produk + batch + tanggal</b>.<br/>
+                Saran: aktifkan “dedup rule” sebelum training.
+              </p>
+            </div>
+            <div class="mini-card">
+              <div class="badge green">Model Readiness</div>
+              <p style="margin-top:8px">
+                Dataset siap retraining jika:
+                <br/>• Missing < 5%
+                <br/>• Duplikasi = 0
+                <br/>• Label imbalance ditangani
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- MASTER DATA VIEW -->
+    <section id="view-master" class="hide">
+      <div class="card">
+        <h2>🧩 Manajemen Master Data</h2>
+        <p>Kontrol istilah untuk mencegah data “liar” yang merusak training AI.</p>
+
+        <div class="tabs" style="margin-top:12px;">
+          <button class="tab active" onclick="setMasterTab('material')">Master Material</button>
+          <button class="tab" onclick="setMasterTab('masalah')">Master Masalah</button>
+          <button class="tab" onclick="setMasterTab('solusi')">Master Solusi</button>
+        </div>
+
+        <div class="toolbar">
+          <div class="search">
+            🔎 <input placeholder="Cari: Knitting A / Lem X / Rumus C / mudah_lepas ..." />
+          </div>
+          <div class="actions">
+            <button class="btn-light" onclick="toast('Item master ditambah (demo).')">+ Tambah</button>
+            <button class="btn-light" onclick="toast('Import CSV master data (demo).')">Import CSV</button>
+            <button class="btn-light" onclick="toast('Export CSV master data (demo).')">Export CSV</button>
+          </div>
+        </div>
+
+        <!-- Master: Material -->
+        <div id="master-material">
+          <table>
+            <thead>
+              <tr>
+                <th>Jenis</th>
+                <th>Nama Standar</th>
+                <th>Alias / Variasi Penulisan</th>
+                <th class="right">Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>Knitting</b></td>
+                <td class="mono">Knitting A</td>
+                <td class="muted mono">knit A; knitting-a; knitting a</td>
+                <td class="right">
+                  <button class="btn-light" onclick="toast('Edit Master Material (demo).')">Edit</button>
+                </td>
+              </tr>
+              <tr>
+                <td><b>Lem</b></td>
+                <td class="mono">Lem X</td>
+                <td class="muted mono">lemx; lem-x; lem X</td>
+                <td class="right"><button class="btn-light" onclick="toast('Edit Master Lem (demo).')">Edit</button></td>
+              </tr>
+              <tr>
+                <td><b>Formula</b></td>
+                <td class="mono">Rumus C</td>
+                <td class="muted mono">formula c; rumusc; rumus-c</td>
+                <td class="right"><button class="btn-light" onclick="toast('Edit Master Formula (demo).')">Edit</button></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="hint" style="margin-top:10px;">
+            <b>Catatan untuk client:</b> master material menjaga agar “Knitting A” tidak masuk sebagai 5 versi berbeda.
+            Ini penting karena ML tradisional hanya akurat bila istilah konsisten.
+          </div>
+        </div>
+
+        <!-- Master: Masalah -->
+        <div id="master-masalah" class="hide">
+          <table>
+            <thead>
+              <tr>
+                <th>Kategori</th>
+                <th>Label Standar</th>
+                <th>Sinonim Narasi</th>
+                <th>Severity Default</th>
+                <th class="right">Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Perekat</td>
+                <td class="mono"><b>mudah_lepas</b></td>
+                <td class="muted mono">lepas; copot; tidak menempel; ujung lepas</td>
+                <td><span class="pill-mini bad">critical</span></td>
+                <td class="right"><button class="btn-light" onclick="toast('Edit master masalah (demo).')">Edit</button></td>
+              </tr>
+              <tr>
+                <td>Perekat</td>
+                <td class="mono"><b>lem_menggumpal</b></td>
+                <td class="muted mono">menggumpal; clumping; gumpalan lem</td>
+                <td><span class="pill-mini warn">major</span></td>
+                <td class="right"><button class="btn-light" onclick="toast('Edit master masalah (demo).')">Edit</button></td>
+              </tr>
+              <tr>
+                <td>Kenyamanan</td>
+                <td class="mono"><b>terasa_kaku</b></td>
+                <td class="muted mono">keras; kaku; kurang lentur</td>
+                <td><span class="pill-mini warn">major</span></td>
+                <td class="right"><button class="btn-light" onclick="toast('Edit master masalah (demo).')">Edit</button></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="hint" style="margin-top:10px;">
+            <b>Catatan:</b> daftar sinonim ini yang nanti dipakai modul NLP untuk auto-labeling narasi.
+          </div>
+        </div>
+
+        <!-- Master: Solusi -->
+        <div id="master-solusi" class="hide">
+          <table>
+            <thead>
+              <tr>
+                <th>Label Solusi</th>
+                <th>Deskripsi</th>
+                <th>Contoh Implementasi</th>
+                <th class="right">Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="mono"><b>ganti_lem</b></td>
+                <td>Mengganti jenis lem yang lebih kuat / stabil.</td>
+                <td class="muted mono">Lem X → Lem Y</td>
+                <td class="right"><button class="btn-light" onclick="toast('Edit master solusi (demo).')">Edit</button></td>
+              </tr>
+              <tr>
+                <td class="mono"><b>tambah_curing</b></td>
+                <td>Menambah waktu curing agar bonding lebih kuat.</td>
+                <td class="muted mono">+10 s.d 15 detik</td>
+                <td class="right"><button class="btn-light" onclick="toast('Edit master solusi (demo).')">Edit</button></td>
+              </tr>
+              <tr>
+                <td class="mono"><b>soft_touch_coating</b></td>
+                <td>Melapisi agar material lebih nyaman & fleksibel.</td>
+                <td class="muted mono">soft layer pada knitting</td>
+                <td class="right"><button class="btn-light" onclick="toast('Edit master solusi (demo).')">Edit</button></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="hint" style="margin-top:10px;">
+            <b>Manfaat:</b> master solusi membuat rekomendasi AI konsisten (tidak “ganti lem” vs “ubah lem” dianggap berbeda).
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MONITOR VIEW -->
+    <section id="view-monitor" class="hide">
+      <div class="card">
+        <h2>🔎 Monitoring Kualitas Dataset</h2>
+        <p>Deteksi masalah data sebelum training/retraining dilakukan.</p>
+      </div>
+
+      <div class="split">
+        <div class="card">
+          <h2>📌 Temuan Kualitas Data</h2>
+          <p>Daftar isu yang harus diselesaikan agar prediksi model stabil.</p>
+
+          <div class="tabs" style="margin-top:12px;">
+            <button class="tab active" onclick="setMonitorTab('missing')">Missing Value</button>
+            <button class="tab" onclick="setMonitorTab('imbalance')">Imbalance Label</button>
+            <button class="tab" onclick="setMonitorTab('dupe')">Duplikasi Kasus</button>
+          </div>
+
+          <!-- Missing -->
+          <div id="monitor-missing">
+            <table>
+              <thead>
+                <tr>
+                  <th>Kolom</th>
+                  <th>% Missing</th>
+                  <th>Penyebab</th>
+                  <th>Rekomendasi</th>
+                  <th class="right">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="mono">formula_coating</td>
+                  <td><span class="pill-mini warn">7,8%</span></td>
+                  <td class="muted">Sering lupa diisi saat input manual</td>
+                  <td>Wajibkan input / default “unknown”</td>
+                  <td class="right"><button class="btn-light" onclick="toast('Auto fill dijalankan (demo).')">Auto Fill</button></td>
+                </tr>
+                <tr>
+                  <td class="mono">supplier_lem</td>
+                  <td><span class="pill-mini warn">5,1%</span></td>
+                  <td class="muted">Data historis lama tidak lengkap</td>
+                  <td>Isi dari master supplier / imputasi</td>
+                  <td class="right"><button class="btn-light" onclick="toast('Saran imputasi dibuat (demo).')">Imputasi</button></td>
+                </tr>
+                <tr>
+                  <td class="mono">tanggal_uji</td>
+                  <td><span class="pill-mini good">0,3%</span></td>
+                  <td class="muted">Kasus lama</td>
+                  <td>Validasi manual (kecil)</td>
+                  <td class="right"><button class="btn-light" onclick="toast('Ditandai untuk verifikasi (demo).')">Flag</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Imbalance -->
+          <div id="monitor-imbalance" class="hide">
+            <table>
+              <thead>
+                <tr>
+                  <th>Label Masalah</th>
+                  <th>Jumlah</th>
+                  <th>Proporsi</th>
+                  <th>Status</th>
+                  <th>Penanganan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="mono">mudah_lepas</td>
+                  <td>312</td>
+                  <td>25,2%</td>
+                  <td><span class="pill-mini good">OK</span></td>
+                  <td>Normal</td>
+                </tr>
+                <tr>
+                  <td class="mono">lem_menggumpal</td>
+                  <td>47</td>
+                  <td>3,8%</td>
+                  <td><span class="pill-mini warn">Imbalance</span></td>
+                  <td>Class weight / oversampling</td>
+                </tr>
+                <tr>
+                  <td class="mono">iritasi_ringan</td>
+                  <td>9</td>
+                  <td>0,7%</td>
+                  <td><span class="pill-mini bad">Sangat Langka</span></td>
+                  <td>Tambah data / audit label</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="hint" style="margin-top:10px;">
+              <b>Penjelasan ke client:</b> imbalance menyebabkan AI bias (hanya pintar pada label yang sering muncul).
+              Solusi umum: class weight, oversampling, atau menambah data kasus langka.
+            </div>
+          </div>
+
+          <!-- Duplicates -->
+          <div id="monitor-dupe" class="hide">
+            <table>
+              <thead>
+                <tr>
+                  <th>Key Duplikasi</th>
+                  <th>Jumlah</th>
+                  <th>Contoh</th>
+                  <th>Rekomendasi</th>
+                  <th class="right">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="mono">produk + batch + tanggal</td>
+                  <td><span class="pill-mini bad">6</span></td>
+                  <td class="muted mono">BM-T 6321 / B-11 / 2026-01-02</td>
+                  <td>Gabungkan / hapus duplikat</td>
+                  <td class="right"><button class="btn-light" onclick="toast('Dedup rule dijalankan (demo).')">Dedup</button></td>
+                </tr>
+                <tr>
+                  <td class="mono">narasi identical</td>
+                  <td><span class="pill-mini warn">3</span></td>
+                  <td class="muted">Kesimpulan copy-paste</td>
+                  <td>Validasi manual</td>
+                  <td class="right"><button class="btn-light" onclick="toast('Dibuka untuk review (demo).')">Review</button></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="hint" style="margin-top:10px;">
+              <b>Catatan:</b> duplikasi membuat model overfitting dan metrik evaluasi terlihat “palsu bagus”.
+            </div>
+          </div>
+
+        </div>
+
+        <div class="card">
+          <h2>✅ Checklist Siap Retraining</h2>
+          <p>Retraining boleh dilakukan jika semua syarat terpenuhi.</p>
+
+          <div style="display:grid; gap:10px; margin-top:12px;">
+            <div class="mini-card">
+              <h3>1) Missing Value</h3>
+              <p>
+                Target: <b>&lt; 5%</b><br/>
+                Status: <span class="pill-mini warn">3,1%</span> ✅
+              </p>
+            </div>
+            <div class="mini-card">
+              <h3>2) Konsistensi Master Data</h3>
+              <p>
+                Target: tidak ada istilah liar<br/>
+                Status: <span class="pill-mini warn">14 isu</span> ⚠️
+              </p>
+            </div>
+            <div class="mini-card">
+              <h3>3) Duplikasi</h3>
+              <p>
+                Target: <b>0 duplikasi</b><br/>
+                Status: <span class="pill-mini bad">9 duplikasi</span> ❌
+              </p>
+            </div>
+            <div class="mini-card">
+              <h3>4) Imbalance Label</h3>
+              <p>
+                Target: label langka ditangani<br/>
+                Status: <span class="pill-mini warn">2 label langka</span> ⚠️
+              </p>
+            </div>
+          </div>
+
+          <button class="btn" style="margin-top:12px;width:100%;" onclick="toast('Sistem menjalankan simulasi retrain & evaluasi (demo).')">
+            Jalankan Simulasi Retraining
+          </button>
+
+          <div class="hint" style="margin-top:10px;">
+            Setelah simulasi: sistem menampilkan metrik (F1-score, precision/recall) dan dibandingkan dengan model sebelumnya (v1 vs v2).
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCHEDULE VIEW -->
+    <section id="view-schedule" class="hide">
+      <div class="card">
+        <h2>🗓️ Retraining Schedule (Manual / Terjadwal)</h2>
+        <p>Menentukan kapan model AI dilatih ulang agar mengikuti data R&D terbaru.</p>
+
+        <div class="grid" style="margin-top:12px;">
+          <div class="card span-6" style="box-shadow:none;border:1px dashed #cbd5e1;background:#f8fafc">
+            <h2>Mode Retraining</h2>
+            <p>Pilih salah satu: manual (atas persetujuan) atau terjadwal otomatis.</p>
+            <div style="display:grid;gap:10px;margin-top:10px;">
+              <label class="mini-card" style="cursor:pointer">
+                <div style="display:flex;gap:10px;align-items:flex-start">
+                  <input type="radio" name="mode" checked />
+                  <div>
+                    <b>Manual</b>
+                    <p class="muted" style="margin-top:4px">
+                      Retraining dilakukan setelah QC dataset selesai dan disetujui oleh admin.
+                    </p>
+                  </div>
+                </div>
+              </label>
+              <label class="mini-card" style="cursor:pointer">
+                <div style="display:flex;gap:10px;align-items:flex-start">
+                  <input type="radio" name="mode" />
+                  <div>
+                    <b>Terjadwal</b>
+                    <p class="muted" style="margin-top:4px">
+                      Retraining otomatis tiap minggu / 2 minggu dengan syarat dataset memenuhi checklist.
+                    </p>
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="card span-6" style="box-shadow:none;border:1px dashed #cbd5e1;background:#f8fafc">
+            <h2>Trigger Otomatis (Opsional)</h2>
+            <p>Retraining akan dijalankan jika syarat terpenuhi.</p>
+            <table style="margin-top:10px">
+              <thead>
+                <tr>
+                  <th>Trigger</th>
+                  <th>Nilai</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Data baru</td>
+                  <td class="mono">&ge; 100 kasus</td>
+                  <td><span class="pill-mini good">Aktif</span></td>
+                </tr>
+                <tr>
+                  <td>Missing Value</td>
+                  <td class="mono">&lt; 5%</td>
+                  <td><span class="pill-mini good">Aktif</span></td>
+                </tr>
+                <tr>
+                  <td>Duplikasi</td>
+                  <td class="mono">0</td>
+                  <td><span class="pill-mini bad">Belum</span></td>
+                </tr>
+                <tr>
+                  <td>Skor performa turun</td>
+                  <td class="mono">F1 turun &gt; 3%</td>
+                  <td><span class="pill-mini warn">Opsional</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="toolbar" style="margin-top:14px;">
+          <div class="search">
+            🔎 <input placeholder="Cari histori retraining... contoh: v2 / 2026-01 / F1-score" />
+          </div>
+          <div class="actions">
+            <button class="btn-light" onclick="toast('Retrain dijalankan sekarang (demo).')">Retrain Sekarang</button>
+            <button class="btn-light" onclick="toast('Approval diminta ke QA/Lead R&D (demo).')">Minta Approval</button>
+          </div>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Versi Model</th>
+              <th>Waktu</th>
+              <th>Mode</th>
+              <th>Dataset</th>
+              <th>Metrik</th>
+              <th>Status</th>
+              <th class="right">Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="mono"><b>Model v1</b></td>
+              <td>2026-01-03 10:20</td>
+              <td><span class="pill-mini good">Manual</span></td>
+              <td class="mono">n=840</td>
+              <td class="mono">F1=0.78</td>
+              <td><span class="pill-mini good">Aktif</span></td>
+              <td class="right"><button class="btn-light" onclick="toast('Detail model v1 (demo).')">Detail</button></td>
+            </tr>
+            <tr>
+              <td class="mono"><b>Model v2</b></td>
+              <td>2026-01-10 22:05</td>
+              <td><span class="pill-mini warn">Terjadwal</span></td>
+              <td class="mono">n=1.240</td>
+              <td class="mono">F1=0.81</td>
+              <td><span class="pill-mini warn">Menunggu Approval</span></td>
+              <td class="right">
+                <button class="btn-light" onclick="toast('Rollback ke model sebelumnya (demo).')">Rollback</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="hint" style="margin-top:12px;">
+          <b>Catatan untuk client:</b> fitur retraining dibuat aman dengan mekanisme:
+          <br/>• versioning model
+          <br/>• approval (QA/Lead R&D)
+          <br/>• rollback jika model baru menurun performanya
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<div class="footer">
+  <b>Mockup UI:</b> Data Governance + Master Data + Dataset Monitoring + Retraining Schedule • (Demo statis) <span class="muted">— siap dipresentasikan ke client</span>
+</div>
+
+<script>
+  function showView(name){
+    const views = {
+      dashboard: 'view-dashboard',
+      master: 'view-master',
+      monitor: 'view-monitor',
+      schedule: 'view-schedule'
+    };
+    Object.values(views).forEach(id => document.getElementById(id).classList.add('hide'));
+    document.getElementById(views[name]).classList.remove('hide');
+
+    // nav active
+    document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
+    const map = {dashboard:0, master:1, monitor:2, schedule:3};
+    document.querySelectorAll('.nav a')[map[name]].classList.add('active');
+  }
+
+  function setMasterTab(tab){
+    document.querySelectorAll('#view-master .tab').forEach(t=>t.classList.remove('active'));
+    const tabs = {material:0, masalah:1, solusi:2};
+    document.querySelectorAll('#view-master .tab')[tabs[tab]].classList.add('active');
+
+    document.getElementById('master-material').classList.add('hide');
+    document.getElementById('master-masalah').classList.add('hide');
+    document.getElementById('master-solusi').classList.add('hide');
+
+    if(tab==='material') document.getElementById('master-material').classList.remove('hide');
+    if(tab==='masalah') document.getElementById('master-masalah').classList.remove('hide');
+    if(tab==='solusi') document.getElementById('master-solusi').classList.remove('hide');
+  }
+
+  function setMonitorTab(tab){
+    document.querySelectorAll('#view-monitor .tab').forEach(t=>t.classList.remove('active'));
+    const tabs = {missing:0, imbalance:1, dupe:2};
+    document.querySelectorAll('#view-monitor .tab')[tabs[tab]].classList.add('active');
+
+    document.getElementById('monitor-missing').classList.add('hide');
+    document.getElementById('monitor-imbalance').classList.add('hide');
+    document.getElementById('monitor-dupe').classList.add('hide');
+
+    if(tab==='missing') document.getElementById('monitor-missing').classList.remove('hide');
+    if(tab==='imbalance') document.getElementById('monitor-imbalance').classList.remove('hide');
+    if(tab==='dupe') document.getElementById('monitor-dupe').classList.remove('hide');
+  }
+
+  // tiny toast
+  let toastTimer=null;
+  function toast(msg){
+    let el=document.getElementById('toast');
+    if(!el){
+      el=document.createElement('div');
+      el.id='toast';
+      el.style.position='fixed';
+      el.style.left='50%';
+      el.style.bottom='18px';
+      el.style.transform='translateX(-50%)';
+      el.style.background='#0f172a';
+      el.style.color='#fff';
+      el.style.padding='10px 14px';
+      el.style.borderRadius='999px';
+      el.style.boxShadow='0 12px 28px rgba(2,6,23,.2)';
+      el.style.fontSize='12px';
+      el.style.fontWeight='800';
+      el.style.zIndex='999';
+      document.body.appendChild(el);
+    }
+    el.textContent=msg;
+    el.style.opacity='1';
+    if(toastTimer) clearTimeout(toastTimer);
+    toastTimer=setTimeout(()=>{el.style.opacity='0';},1400);
+  }
+</script>
+
+</body>
+</html>
