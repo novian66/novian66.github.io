@@ -1,221 +1,252 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<title>Sistem Prediksi R&D — Produk Bulu Mata</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Novian Adi Prasetyo</title>
 
-<style>
+  <!-- Google Font (Optional) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-body{
-  font-family: Arial, Helvetica, sans-serif;
-  margin:0;
-  background:#f4f6fc;
-  color:#222;
-}
+  <style>
+    :root{
+      --bg1:#0b1020;
+      --bg2:#060912;
+      --card: rgba(255,255,255,0.06);
+      --stroke: rgba(255,255,255,0.12);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.60);
+      --glow1: rgba(99,102,241,0.35);
+      --glow2: rgba(59,130,246,0.25);
+    }
 
-header{
-  background:#1e293b;
-  color:#fff;
-  padding:20px 30px;
-}
+    *{ box-sizing: border-box; }
+    html,body{ height: 100%; }
+    body{
+      margin:0;
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: radial-gradient(1200px 700px at 10% 10%, rgba(99,102,241,0.18), transparent 55%),
+                  radial-gradient(900px 600px at 90% 20%, rgba(59,130,246,0.12), transparent 50%),
+                  linear-gradient(180deg, var(--bg1), var(--bg2));
+      overflow: hidden;
+    }
 
-nav{
-  background:#0f172a;
-  color:#fff;
-  padding:10px 30px;
-  display:flex;
-  gap:20px;
-}
+    .noise{
+      position: fixed; inset:0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+      opacity:.22;
+      pointer-events:none;
+    }
 
-nav a{
-  color:#cbd5f5;
-  text-decoration:none;
-}
+    .container{
+      height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
 
-.container{
-  padding:25px 30px;
-}
+    .card{
+      width: min(920px, 100%);
+      border: 1px solid var(--stroke);
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+      box-shadow:
+        0 30px 80px rgba(0,0,0,0.50),
+        0 0 0 1px rgba(255,255,255,0.05) inset;
+      border-radius: 28px;
+      padding: 64px 56px;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(14px);
+    }
 
-.card{
-  background:#fff;
-  border-radius:10px;
-  padding:20px;
-  margin-bottom:20px;
-  box-shadow:0 5px 15px rgba(0,0,0,.08);
-}
+    .card::before{
+      content:"";
+      position:absolute;
+      width: 520px;
+      height: 520px;
+      left: -140px;
+      top: -220px;
+      background: radial-gradient(circle at 30% 30%, var(--glow1), transparent 60%);
+      filter: blur(8px);
+      opacity: .85;
+    }
 
-h2{
-  margin-top:0;
-  color:#111827;
-}
+    .card::after{
+      content:"";
+      position:absolute;
+      width: 520px;
+      height: 520px;
+      right: -160px;
+      bottom: -250px;
+      background: radial-gradient(circle at 30% 30%, var(--glow2), transparent 65%);
+      filter: blur(10px);
+      opacity: .85;
+    }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:15px;
-}
+    header{
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 42px;
+    }
 
-input, select, textarea{
-  width:100%;
-  padding:10px;
-  border-radius:6px;
-  border:1px solid #ccc;
-  margin-top:5px;
-}
+    .brand{
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      opacity: .85;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
 
-button{
-  background:#2563eb;
-  color:#fff;
-  padding:12px 18px;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-  margin-top:15px;
-}
+    .dot{
+      width:10px; height:10px;
+      border-radius:999px;
+      background: linear-gradient(90deg,#6366f1,#3b82f6);
+      box-shadow: 0 0 22px rgba(99,102,241,0.55);
+    }
 
-.badge{
-  padding:6px 10px;
-  border-radius:8px;
-  font-size:13px;
-  color:#fff;
-}
+    nav a{
+      color: var(--muted);
+      text-decoration:none;
+      font-size: 14px;
+      margin-left: 18px;
+      transition: .2s ease;
+    }
+    nav a:hover{ color: var(--text); }
 
-.high{ background:#dc2626;}
-.mid{ background:#f97316;}
-.low{ background:#16a34a;}
+    .hero{
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 18px 0 8px;
+    }
 
-.footer{
-  text-align:center;
-  padding:20px;
-  font-size:13px;
-  color:#6b7280;
-}
+    h1{
+      margin: 0;
+      font-size: clamp(40px, 5vw, 72px);
+      line-height: 1.05;
+      letter-spacing: -1.2px;
+      font-weight: 700;
+      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.55));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-</style>
+    p{
+      margin: 18px auto 0;
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+    }
 
-<script>
-function mockPredict(){
+    .actions{
+      margin-top: 34px;
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap: wrap;
+    }
 
-document.getElementById("result-section").style.display="block";
+    .btn{
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      padding: 12px 18px;
+      border-radius: 999px;
+      text-decoration:none;
+      font-size: 14px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      transition: .18s ease;
+      cursor:pointer;
+    }
 
-document.getElementById("risk1").innerHTML="Bulu mata mudah lepas (68%)";
-document.getElementById("risk2").innerHTML="Rasa kurang nyaman / agak keras (42%)";
-document.getElementById("risk3").innerHTML="Warna sedikit memudar (15%)";
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.09);
+    }
 
-document.getElementById("rec1").innerHTML="Gunakan Lem Y sebagai pengganti Lem X";
-document.getElementById("rec2").innerHTML="Tambahkan proses curing selama 10–15 detik";
-document.getElementById("rec3").innerHTML="Pertimbangkan soft-touch coating pada material knitting A";
+    .btn.primary{
+      border: none;
+      background: linear-gradient(90deg,#6366f1,#3b82f6);
+      box-shadow:
+        0 18px 45px rgba(59,130,246,0.18),
+        0 8px 22px rgba(99,102,241,0.16);
+    }
 
-document.getElementById("score").innerHTML="Perkiraan Tingkat Keberhasilan: 87%";
+    .btn.primary:hover{
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
 
-}
-</script>
+    footer{
+      margin-top: 54px;
+      text-align:center;
+      color: rgba(255,255,255,0.40);
+      font-size: 13px;
+      position: relative;
+      z-index: 2;
+    }
 
+    @media (max-width: 640px){
+      .card{ padding: 44px 22px; border-radius: 22px; }
+      header{ margin-bottom: 28px; }
+      nav{ display:none; }
+    }
+  </style>
 </head>
+
 <body>
+  <div class="noise" aria-hidden="true"></div>
 
-<header>
-  <h1>Sistem Prediksi R&D — Produk Bulu Mata</h1>
-  <p>Memprediksi potensi masalah & rekomendasi solusi sebelum uji fisik dilakukan</p>
-</header>
+  <div class="container">
+    <main class="card">
+      <header>
+        <div class="brand">
+          <span class="dot"></span>
+          <span>Portfolio</span>
+        </div>
 
+        <nav>
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
 
-<div class="container">
+      <section class="hero" id="home">
+        <h1>Novian Adi Prasetyo</h1>
+        <p>
+          Halaman profil minimalis dengan tampilan profesional dan elegan.
+          Cocok untuk landing page personal, CV online, maupun halaman portfolio.
+        </p>
 
-  <div class="card">
-    <h2>🆕 Informasi Produk</h2>
+        <div class="actions">
+          <a class="btn primary" href="#contact">Get in Touch</a>
+          <a class="btn" href="#about">View Profile</a>
+        </div>
+      </section>
 
-    <div class="grid">
-      <div>
-        <label>Kode Produk</label>
-        <input placeholder="contoh: BM-T 6322">
-      </div>
-
-      <div>
-        <label>Jenis Produk</label>
-        <select>
-          <option>Strip Lash</option>
-          <option>Cluster Lash</option>
-          <option>Individual Lash</option>
-        </select>
-      </div>
-
-      <div>
-        <label>Material Utama</label>
-        <input placeholder="contoh: Knitting A">
-      </div>
-
-      <div>
-        <label>Lem / Adhesive</label>
-        <input placeholder="contoh: Lem X">
-      </div>
-
-      <div>
-        <label>Formula / Coating</label>
-        <input placeholder="contoh: Rumus C">
-      </div>
-    </div>
-
-    <button onclick="mockPredict()">🔮 Hasilkan Prediksi AI</button>
+      <footer id="contact">
+        © <span id="year"></span> Novian Adi Prasetyo
+      </footer>
+    </main>
   </div>
 
-
-
-  <div class="card" id="result-section" style="display:none">
-
-    <h2>⚠️ Prediksi Potensi Masalah</h2>
-
-    <div class="grid">
-
-      <div class="card">
-        <span class="badge high">RISIKO TINGGI</span>
-        <h3 id="risk1"></h3>
-      </div>
-
-      <div class="card">
-        <span class="badge mid">RISIKO SEDANG</span>
-        <h3 id="risk2"></h3>
-      </div>
-
-      <div class="card">
-        <span class="badge low">RISIKO RENDAH</span>
-        <h3 id="risk3"></h3>
-      </div>
-
-    </div>
-
-    <hr>
-
-    <h2>🛠 Rekomendasi Tindakan dari AI</h2>
-
-    <ul>
-      <li id="rec1"></li>
-      <li id="rec2"></li>
-      <li id="rec3"></li>
-    </ul>
-
-    <div class="card">
-      <h3 id="score"></h3>
-      <p><i>Catatan: Prediksi ini berdasarkan pola historis data R&D.</i></p>
-    </div>
-
-  </div>
-
-
-  <div class="card">
-    <h2>📚 Contoh Data Basis Pengetahuan</h2>
-    <p><b>Material:</b> Knitting A | <b>Lem:</b> Lem X</p>
-    <p><b>Masalah Umum:</b> Bulu mata mudah lepas</p>
-    <p><b>Solusi Efektif:</b> Mengganti Lem Y + proses curing 10–15 detik</p>
-  </div>
-
-</div>
-
-
-<div class="footer">
-  Mockup Sistem Prediksi R&D — Produk Bulu Mata • Tampilan Demo Saja (UI)
-</div>
-
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
