@@ -1,0 +1,842 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Eyelashesworld — Premium Handmade False Eyelashes & Private Label</title>
+  <meta name="description" content="Premium handmade false eyelashes. Private label / OEM / ODM solutions for lash brands worldwide." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      /* Palette (kept) */
+      --bg:#ffffff;
+      --bg-alt:#fcfcfd;
+      --text:#101828;
+      --muted:#667085;
+      --border:#eaecf0;
+
+      --accent:#ef7b00;
+      --accent-hover:#d66c00;
+      --accent-light:#fff6ed;
+      --dark-bg:#1d2939;
+
+      --max:1200px;
+      --transition:all .25s cubic-bezier(.4,0,.2,1);
+      --shadow:0 16px 38px rgba(16,24,40,.14);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.6;
+      font-size:16px;
+    }
+    a{color:inherit;text-decoration:none;transition:var(--transition)}
+    img{max-width:100%;display:block;height:auto}
+    h1,h2,h3,h4{margin:0 0 1rem 0;line-height:1.05;font-weight:800;letter-spacing:-.03em}
+    p{margin:0 0 1.25rem 0;color:var(--muted)}
+    .container{width:92%;max-width:var(--max);margin:0 auto;padding:0 1rem}
+
+    /* Header */
+    .header{
+      position:sticky;top:0;z-index:100;
+      background:#fff;
+      border-bottom:1px solid var(--border);
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:1rem;padding:.9rem 0;
+    }
+    .brand{display:flex;align-items:center;gap:.75rem}
+    .brand img{border-radius:10px}
+    .brand-text h1{font-size:1.05rem;margin:0;letter-spacing:-.01em}
+    .brand-text span{display:block;font-size:.75rem;color:var(--muted);font-weight:400}
+    .nav-links{display:flex;gap:1.6rem}
+    .nav-links a{font-size:.95rem;font-weight:700;color:var(--muted)}
+    .nav-links a:hover{color:var(--accent)}
+    .nav-actions{display:flex;gap:.75rem;align-items:center}
+    .hamburger{display:none;background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--text)}
+    .mobile-drawer{
+      position:fixed;top:72px;left:0;right:0;bottom:0;
+      background:#fff;z-index:99;padding:1.75rem 2rem;
+      transform:translateX(100%);transition:transform .28s ease;
+      border-top:1px solid var(--border);overflow:auto;
+    }
+    .mobile-drawer.open{transform:translateX(0)}
+    .mobile-drawer a{display:block;padding:1rem 0;border-bottom:1px solid var(--border);font-size:1.05rem;font-weight:800}
+
+    /* Buttons */
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:.8rem 1.35rem;
+      font-weight:800;font-size:.95rem;
+      border:2px solid transparent;
+      transition:var(--transition);
+      cursor:pointer;
+      white-space:nowrap;
+    }
+    .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .btn.primary:hover{background:var(--accent-hover);transform:translateY(-1px)}
+    .btn.secondary{background:#fff;color:var(--text);border-color:var(--text)}
+    .btn.secondary:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-light);transform:translateY(-1px)}
+
+    /* Modern Bold blocks */
+    .block{
+      padding:5rem 0;
+      border-top:1px solid var(--border);
+    }
+    .block.alt{background:var(--bg-alt)}
+    .block.dark{
+      background:var(--dark-bg);
+      color:#fff;
+      border-top:1px solid rgba(255,255,255,.10);
+    }
+    .block.dark h1,.block.dark h2,.block.dark h3,.block.dark h4{color:#fff}
+    .block.dark p{color:rgba(255,255,255,.75)}
+    .kicker{
+      display:inline-block;
+      padding:.25rem .7rem;
+      background:var(--accent);
+      color:#fff;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-size:.72rem;
+      margin-bottom:1rem;
+    }
+    .section-head{
+      display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem;
+      margin-bottom:2.25rem;
+    }
+    .section-head .title{max-width:760px}
+    .section-head .title p{font-size:1.05rem}
+    .rule{
+      height:2px;
+      background:var(--text);
+      flex:1;
+      max-width:320px;
+      opacity:.12;
+    }
+    .block.dark .rule{background:#fff;opacity:.18}
+
+    /* Hero: bold blocks + ribbon stats */
+    .hero{
+      padding:0;
+      border-top:none;
+      background:var(--dark-bg);
+      color:#fff;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-wrap{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:0;
+      min-height:640px;
+    }
+    .hero-copy{
+      padding:5.5rem 0 4.25rem;
+      position:relative;
+    }
+    .hero-copy .container{padding-right:2rem}
+    .hero h1{
+      font-size:clamp(2.35rem,5vw,4.1rem);
+      margin:0 0 1rem 0;
+    }
+    .hero p{font-size:1.1rem;max-width:60ch;color:rgba(255,255,255,.78)}
+    .hero-cta{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.6rem}
+    .hero-media{
+      position:relative;
+      background:url('https://eyelashesworld.com/media/eyelashesworld-slider-1.webp') center/cover no-repeat;
+      min-height:640px;
+    }
+    .hero-media:before{
+      content:"";
+      position:absolute;inset:0;
+      background:linear-gradient(90deg,rgba(29,41,57,1) 0%, rgba(29,41,57,.35) 55%, rgba(29,41,57,.15) 100%);
+    }
+    .hero-media:after{
+      content:"";
+      position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.55));
+      pointer-events:none;
+    }
+    .hero-btm{
+      position:absolute;left:0;right:0;bottom:0;
+      background:var(--accent);
+      color:#fff;
+      padding:1rem 0;
+    }
+    .ribbon{
+      display:grid;
+      grid-template-columns: repeat(3,minmax(0,1fr));
+      gap:1rem;
+      align-items:center;
+    }
+    .ribbon .stat{
+      border:2px solid rgba(255,255,255,.22);
+      padding:1rem 1.1rem;
+    }
+    .ribbon strong{display:block;font-size:1.55rem;line-height:1}
+    .ribbon span{
+      display:block;
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-weight:900;
+      opacity:.92;
+      margin-top:.25rem;
+    }
+
+    /* Trust strip (kept content) */
+    .trust{
+      background:#121a26;
+      color:#fff;
+      padding:1.15rem 0;
+    }
+    .trust-flex{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+    .tags{display:flex;gap:.5rem;flex-wrap:wrap}
+    .tag{padding:.3rem .8rem;border:1px solid rgba(255,255,255,.18);font-weight:800;font-size:.8rem}
+
+    /* Catalog: bold block tiles */
+    .tiles{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap:0;
+      border:2px solid var(--text);
+    }
+    .tile{
+      border-right:2px solid var(--text);
+      background:#fff;
+      display:flex;
+      flex-direction:column;
+      min-height:420px;
+      transition:var(--transition);
+    }
+    .tile:last-child{border-right:none}
+    .tile:hover{background:var(--accent-light)}
+    .tile .img{
+      position:relative;
+      height:220px;
+      overflow:hidden;
+      border-bottom:2px solid var(--text);
+    }
+    .tile .img img{
+      width:100%;height:100%;object-fit:cover;
+      transform:scale(1);
+      transition:transform .6s ease;
+    }
+    .tile:hover .img img{transform:scale(1.08)}
+    .tile .body{
+      padding:1.2rem 1.2rem;
+      display:flex;flex-direction:column;gap:.35rem;flex:1;
+    }
+    .tile h3{font-size:1.15rem;margin:0 0 .35rem 0}
+    .tile p{margin:0;color:var(--muted);font-size:.92rem}
+    .tile .meta{
+      margin-top:auto;
+      padding-top:1rem;
+      border-top:2px solid var(--text);
+      display:flex;justify-content:space-between;align-items:center;
+      font-weight:900;color:var(--text);
+      text-transform:uppercase;letter-spacing:.10em;font-size:.78rem;
+    }
+
+    /* Split blocks (hard edges) */
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:0;
+      border:2px solid var(--text);
+      background:#fff;
+    }
+    .split .pane{
+      padding:2.25rem;
+      border-right:2px solid var(--text);
+    }
+    .split .pane:last-child{border-right:none}
+    .split .media{
+      padding:0;
+      position:relative;
+      min-height:420px;
+      overflow:hidden;
+    }
+    .split .media img{width:100%;height:100%;object-fit:cover}
+    .split .media:after{
+      content:"";
+      position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(0,0,0,.10),rgba(0,0,0,.30));
+      pointer-events:none;
+    }
+    .list{list-style:none;padding:0;margin:1.25rem 0 0 0;display:grid;gap:.9rem}
+    .list li{display:flex;gap:.9rem;align-items:flex-start}
+    .dot{
+      width:12px;height:12px;background:var(--accent);
+      border-radius:0; /* hard edge */
+      margin-top:.35rem;flex-shrink:0;
+    }
+
+    /* Blog: bold blocks row */
+    .blog-row{
+      display:grid;
+      grid-template-columns: repeat(3,minmax(0,1fr));
+      gap:0;
+      border:2px solid var(--text);
+      background:#fff;
+    }
+    .blog{
+      border-right:2px solid var(--text);
+      transition:var(--transition);
+      display:flex;flex-direction:column;
+      min-height:420px;
+    }
+    .blog:last-child{border-right:none}
+    .blog:hover{background:var(--accent-light)}
+    .blog .img{height:220px;overflow:hidden;border-bottom:2px solid var(--text)}
+    .blog .img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+    .blog:hover .img img{transform:scale(1.08)}
+    .blog .body{padding:1.2rem;display:flex;flex-direction:column;gap:.35rem;flex:1}
+    .badge{
+      display:inline-flex;
+      padding:.22rem .6rem;
+      background:var(--text);
+      color:#fff;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-size:.72rem;
+      width:fit-content;
+      margin-bottom:.65rem;
+    }
+    .badge.orange{background:var(--accent)}
+    .blog h3{font-size:1.15rem;margin:0 0 .35rem 0}
+    .blog p{margin:0;font-size:.92rem}
+
+    /* Newsletter: blocky */
+    .newsletter{
+      border:2px solid #fff;
+      padding:2.5rem 2rem;
+      display:grid;
+      grid-template-columns: 1fr auto;
+      gap:1.5rem;
+      align-items:center;
+      background:transparent;
+    }
+    .newsletter h3{margin:0 0 .5rem 0}
+    .newsletter p{margin:0}
+    .form-inline{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:flex-end}
+    .form-inline input{
+      padding:.85rem 1.2rem;
+      border:0;
+      outline:none;
+      width:320px;
+      font-family:inherit;
+    }
+
+    /* FAQ */
+    .faq-grid{
+      display:grid;
+      grid-template-columns: repeat(3,minmax(0,1fr));
+      gap:0;
+      border:2px solid var(--text);
+      background:#fff;
+    }
+    .faq{
+      border-right:2px solid var(--text);
+      padding:1.4rem 1.25rem;
+    }
+    .faq:last-child{border-right:none}
+    .faq h4{font-size:1.05rem;margin:0 0 .45rem 0}
+    .faq p{margin:0}
+
+    /* Contact */
+    .contact-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:0;
+      border:2px solid var(--text);
+      background:#fff;
+    }
+    .contact-grid .pane{
+      padding:2.25rem;
+      border-right:2px solid var(--text);
+    }
+    .contact-grid .pane:last-child{border-right:none;padding:0}
+    .contact-media{min-height:520px;position:relative;overflow:hidden}
+    .contact-media img{width:100%;height:100%;object-fit:cover}
+    .contact-box{
+      margin-top:1.4rem;
+      border:2px solid var(--text);
+      padding:1rem 1rem;
+      background:var(--bg-alt);
+    }
+    .contact-actions{margin-top:1.25rem;display:flex;gap:.75rem;flex-wrap:wrap}
+
+    /* Footer */
+    .footer{
+      background:#121212;
+      color:#98a2b3;
+      padding:4rem 0 2rem;
+      font-size:.9rem;
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap:2rem;
+      margin-bottom:3rem;
+    }
+    .footer h4{color:#fff;font-size:1rem;margin:0 0 1.1rem 0}
+    .footer a{display:block;margin-bottom:.75rem}
+    .footer a:hover{color:var(--accent)}
+    .footer-bottom{
+      border-top:1px solid rgba(255,255,255,.1);
+      padding-top:1.5rem;
+      display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+    }
+
+    #about{scroll-margin-top:90px}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .nav-links,.nav-actions .btn{display:none}
+      .hamburger{display:block}
+      .hero-wrap{grid-template-columns:1fr}
+      .hero-media{min-height:420px}
+      .ribbon{grid-template-columns:1fr}
+      .tiles{grid-template-columns:1fr;border-width:2px}
+      .tile{border-right:none;border-bottom:2px solid var(--text)}
+      .tile:last-child{border-bottom:none}
+      .split{grid-template-columns:1fr}
+      .split .pane{border-right:none;border-bottom:2px solid var(--text)}
+      .split .pane:last-child{border-bottom:none}
+      .blog-row{grid-template-columns:1fr}
+      .blog{border-right:none;border-bottom:2px solid var(--text)}
+      .blog:last-child{border-bottom:none}
+      .newsletter{grid-template-columns:1fr}
+      .form-inline{justify-content:flex-start}
+      .faq-grid{grid-template-columns:1fr}
+      .faq{border-right:none;border-bottom:2px solid var(--text)}
+      .faq:last-child{border-bottom:none}
+      .contact-grid{grid-template-columns:1fr}
+      .contact-grid .pane{border-right:none;border-bottom:2px solid var(--text)}
+      .contact-grid .pane:last-child{border-bottom:none}
+      .footer-grid{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 560px){
+      .footer-grid{grid-template-columns:1fr}
+      .form-inline input{width:100%}
+      .hero-copy .container{padding-right:1rem}
+      .newsletter{padding:2rem 1.25rem}
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <a class="brand" href="https://eyelashesworld.com/">
+          <img src="https://eyelashesworld.com/media/elw-logo-light-260x102.png" alt="Eyelashesworld" width="80" height="auto">
+          <div class="brand-text">
+            <h1>Eyelashesworld</h1>
+            <span>Premium Handmade Lashes</span>
+          </div>
+        </a>
+
+        <div class="nav-links">
+          <a href="#catalog">Catalog</a>
+          <a href="#private-label">Private Label</a>
+          <a href="#handcraft">Handcraft</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div class="nav-actions">
+          <a class="btn secondary" href="#contact">Explore</a>
+          <a class="btn primary" href="#contact">Get Quote</a>
+          <button class="hamburger" id="hamburgerBtn" aria-label="Menu">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mobile-drawer" id="mobileDrawer">
+    <a href="#catalog">Catalog</a>
+    <a href="#private-label">Private Label</a>
+    <a href="#handcraft">Handcraft</a>
+    <a href="#about">About</a>
+    <a href="#blog">Blog</a>
+    <a href="#contact">Contact Us</a>
+  </div>
+
+  <main>
+    <!-- HERO (Modern Bold / Block Sections) -->
+    <section class="hero">
+      <div class="hero-wrap">
+        <div class="hero-copy">
+          <div class="container">
+            <span class="kicker">Top Rated Manufacturer</span>
+            <h1>Build your lash brand with trusted handmade quality.</h1>
+            <p>Explore thousands of lash styles and scale with custom private label solutions tailored to your market.</p>
+
+            <div class="hero-cta">
+              <a class="btn primary" href="#catalog">View Catalog</a>
+              <a class="btn secondary" href="#private-label" style="border-color:#fff;color:#fff;background:transparent;">Start Private Label</a>
+            </div>
+          </div>
+
+          <!-- Ribbon stats (same values & labels) -->
+          <div class="hero-btm">
+            <div class="container">
+              <div class="ribbon">
+                <div class="stat">
+                  <strong>5,000+</strong>
+                  <span>Styles</span>
+                </div>
+                <div class="stat">
+                  <strong>OEM/ODM</strong>
+                  <span>Custom Box</span>
+                </div>
+                <div class="stat">
+                  <strong>Global</strong>
+                  <span>Export</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-media" aria-label="Hero image"></div>
+      </div>
+    </section>
+
+    <!-- Trust strip -->
+    <section class="trust">
+      <div class="container trust-flex">
+        <div><strong>PT Bintang Mas Triyasa</strong> — Indonesia-based manufacturer</div>
+        <div class="tags">
+          <span class="tag">Handmade Quality</span>
+          <span class="tag">Private Label</span>
+          <span class="tag">Fast Sampling</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catalog -->
+    <section class="block" id="catalog">
+      <div class="container">
+        <div class="section-head">
+          <div class="title">
+            <span class="kicker">Collection</span>
+            <h2>Our Catalog</h2>
+            <p>Keep your existing categories, images, and links—this layout makes them cleaner and easier to scan.</p>
+          </div>
+          <div class="rule" aria-hidden="true"></div>
+          <a class="btn secondary" href="https://eyelashesworld.com/product-category/strip-lashes/">Browse Full Catalog</a>
+        </div>
+
+        <div class="tiles">
+          <a class="tile" href="https://eyelashesworld.com/product-category/strip-lashes/">
+            <div class="img">
+              <img src="https://eyelashesworld.com/media/COVER-NATURLASH-2022-300x300-1-1-1.webp" alt="Strip Lashes">
+            </div>
+            <div class="body">
+              <h3>Strip Lashes</h3>
+              <p>Natural, wispies, dramatic, magnetic, decorated, and more.</p>
+              <div class="meta"><span>View Collection</span><span>→</span></div>
+            </div>
+          </a>
+
+          <a class="tile" href="https://eyelashesworld.com/product-category/faux-mink-lashes/">
+            <div class="img">
+              <img src="https://eyelashesworld.com/media/WISPIES-COLLECTION-1-1-1.webp" alt="Faux Mink">
+            </div>
+            <div class="body">
+              <h3>Faux Mink Lashes</h3>
+              <p>Signature looks, 25mm, dramatic collections, and color.</p>
+              <div class="meta"><span>View Collection</span><span>→</span></div>
+            </div>
+          </a>
+
+          <a class="tile" href="https://eyelashesworld.com/product-category/individual-lashes-2/">
+            <div class="img">
+              <img src="https://eyelashesworld.com/media/SIGNATURE-FAUXMINK-1.webp" alt="Individual Lashes">
+            </div>
+            <div class="body">
+              <h3>Individual Lashes</h3>
+              <p>Classic, cluster, fan, DIY, and professional options.</p>
+              <div class="meta"><span>View Collection</span><span>→</span></div>
+            </div>
+          </a>
+
+          <a class="tile" href="https://eyelashesworld.com/product-category/packaging/">
+            <div class="img">
+              <img src="https://eyelashesworld.com/media/LIGHTWEIGHT-VOLUMINOUS-1.webp" alt="Packaging">
+            </div>
+            <div class="body">
+              <h3>Packaging</h3>
+              <p>Custom boxes, inserts, trays, and brand-ready presentation.</p>
+              <div class="meta"><span>View Collection</span><span>→</span></div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Private Label -->
+    <section class="block alt" id="private-label">
+      <div class="container">
+        <div class="section-head">
+          <div class="title">
+            <span class="kicker">B2B Solutions</span>
+            <h2>Private Label / OEM / ODM</h2>
+            <p class="section-lead">Offer your own lash brand without building a factory. We handle the production so you can focus on sales.</p>
+          </div>
+          <div class="rule" aria-hidden="true"></div>
+          <a class="btn primary" href="#contact">Start Your Project</a>
+        </div>
+
+        <div class="split">
+          <div class="pane">
+            <ul class="list">
+              <li><span class="dot"></span><div><strong>Custom Styles:</strong> Select materials, curl, length, and design.</div></li>
+              <li><span class="dot"></span><div><strong>Custom Packaging:</strong> Boxes, inserts, trays, and finishing.</div></li>
+              <li><span class="dot"></span><div><strong>Workflow:</strong> Sampling → Approval → Production → Export.</div></li>
+              <li><span class="dot"></span><div><strong>Support:</strong> MOQ guidance and trend insights.</div></li>
+            </ul>
+          </div>
+          <div class="media" aria-label="Factory Production">
+            <img src="https://eyelashesworld.com/media/eyelashesworld-slider-4.jpg" alt="Factory Production">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Handcraft -->
+    <section class="block" id="handcraft">
+      <div class="container">
+        <div class="section-head">
+          <div class="title">
+            <span class="kicker">Artisan Quality</span>
+            <h2>Why handmade quality matters</h2>
+            <p>Every lash is meticulously crafted by skilled artisans. This attention to detail ensures superior comfort and consistency.</p>
+          </div>
+          <div class="rule" aria-hidden="true"></div>
+          <a class="btn secondary" href="https://eyelashesworld.com/beauty-handcraft/">See the Process</a>
+        </div>
+
+        <div class="split">
+          <div class="media" aria-label="Handcraft Process">
+            <img src="https://eyelashesworld.com/media/ATTACHMENT-1024x680.jpg" alt="Handcraft Process">
+          </div>
+          <div class="pane">
+            <h3 style="font-size:1.25rem;margin-bottom:.6rem;">Material &amp; Comfort</h3>
+            <p style="margin-bottom:1.25rem;">Lightweight bands and balanced density for all-day wear.</p>
+
+            <h3 style="font-size:1.25rem;margin-bottom:.6rem;">Consistency</h3>
+            <p style="margin:0;">Stable curl, length, and alignment across production.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog -->
+    <section class="block alt" id="blog">
+      <div class="container">
+        <div class="section-head">
+          <div class="title">
+            <span class="kicker">Journal</span>
+            <h2>Latest Updates</h2>
+            <p>Insights into lash trends and business tips.</p>
+          </div>
+          <div class="rule" aria-hidden="true"></div>
+          <a class="btn secondary" href="https://eyelashesworld.com/blog/">Blog</a>
+        </div>
+
+        <div class="blog-row">
+          <a class="blog" href="https://eyelashesworld.com/category/blog/">
+            <div class="img">
+              <img src="https://eyelashesworld.com/media/false-eyelashes-that-sell-today-960x720.jpg.webp" alt="Trends">
+            </div>
+            <div class="body">
+              <span class="badge orange">Trends</span>
+              <h3>2025 Lashes Trends Report</h3>
+              <p>Discover which styles are selling fastest this season.</p>
+            </div>
+          </a>
+
+          <a class="blog" href="https://eyelashesworld.com/category/newsletter/">
+            <div class="img">
+              <img src="https://eyelashesworld.com/media/One-lash-two-world-spikey-lash-960x720.jpg.webp" alt="Newsletter">
+            </div>
+            <div class="body">
+              <span class="badge">News</span>
+              <h3>Newsletter Highlights</h3>
+              <p>Updates from our factory and new material arrivals.</p>
+            </div>
+          </a>
+
+          <a class="blog" href="https://eyelashesworld.com/category/blog/">
+            <div class="img">
+              <img src="https://eyelashesworld.com/media/Desain-tanpa-judul-14-960x720.jpg.webp" alt="Tips">
+            </div>
+            <div class="body">
+              <span class="badge orange">Tips</span>
+              <h3>Business Tips for Lash Brands</h3>
+              <p>How to market your private label lashes effectively.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter (dark block) -->
+    <section class="block dark" id="newsletter">
+      <div class="container">
+        <div class="newsletter">
+          <div>
+            <span class="kicker" style="background:#fff;color:var(--dark-bg)">Newsletter</span>
+            <h3>Get new lash trends &amp; product updates</h3>
+            <p>Join our mailing list to receive the latest catalog updates.</p>
+          </div>
+
+          <form class="form-inline" onsubmit="event.preventDefault(); alert('Demo only.');">
+            <input type="email" placeholder="Enter your email address" required />
+            <button class="btn primary" type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="block alt" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <div class="title">
+            <span class="kicker">Support</span>
+            <h2>Common Questions</h2>
+          </div>
+          <div class="rule" aria-hidden="true"></div>
+        </div>
+
+        <div class="faq-grid">
+          <div class="faq">
+            <h4>Do you support private label?</h4>
+            <p>Yes—OEM/ODM solutions with custom styles and packaging tailored to your brand.</p>
+          </div>
+          <div class="faq">
+            <h4>Can I request samples?</h4>
+            <p>Yes—we encourage sampling. Contact our sales team to arrange a sample kit.</p>
+          </div>
+          <div class="faq">
+            <h4>Do you export globally?</h4>
+            <p>Yes—we have extensive experience exporting to countries worldwide.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="block" id="contact">
+      <div class="container">
+        <div class="section-head">
+          <div class="title">
+            <span class="kicker">Get in Touch</span>
+            <h2>Ready to scale your brand?</h2>
+            <p class="section-lead">Tell us your target market, lash style references, and packaging preferences. We will get back to you with a quote.</p>
+          </div>
+          <div class="rule" aria-hidden="true"></div>
+        </div>
+
+        <div class="contact-grid">
+          <div class="pane">
+            <div class="contact-box">
+              <p><strong>Sales Inquiry:</strong> sales@eyelashesworld.com</p>
+              <p><strong>WhatsApp:</strong> +62 812-XXXX-XXXX</p>
+              <p style="margin:0"><strong>Location:</strong> Purwokerto, Central Java, Indonesia</p>
+            </div>
+
+            <div class="contact-actions">
+              <a class="btn primary" href="https://eyelashesworld.com/contact-us/">Contact Form</a>
+              <a class="btn secondary" href="https://www.instagram.com/eyelashesworld.official/">Instagram</a>
+            </div>
+          </div>
+
+          <div class="contact-media">
+            <img src="https://eyelashesworld.com/media/Post-IG-Linked-03-960x720.jpg" alt="Contact Us">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About anchor (kept for nav; no extra text) -->
+    <section id="about" aria-label="About"></section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <img src="https://eyelashesworld.com/media/elw-logo-light-260x102.png" alt="Eyelashesworld" width="140" style="margin-bottom:1rem;border-radius:6px;">
+          <p>Premium Handmade Lashes &amp; Private Label Manufacturer based in Indonesia.</p>
+        </div>
+
+        <div>
+          <h4>Company</h4>
+          <a href="#about">About Us</a>
+          <a href="#handcraft">Handcraft</a>
+          <a href="#private-label">Private Label</a>
+          <a href="https://eyelashesworld.com/blog/">Blog</a>
+        </div>
+
+        <div>
+          <h4>Catalog</h4>
+          <a href="https://eyelashesworld.com/product-category/strip-lashes/">Strip Lashes</a>
+          <a href="https://eyelashesworld.com/product-category/faux-mink-lashes/">Faux Mink</a>
+          <a href="https://eyelashesworld.com/product-category/individual-lashes-2/">Individual Lashes</a>
+          <a href="https://eyelashesworld.com/product-category/packaging/">Packaging</a>
+        </div>
+
+        <div>
+          <h4>Support</h4>
+          <a href="#faq">FAQ</a>
+          <a href="https://eyelashesworld.com/contact-us/">Request Samples</a>
+          <a href="#contact">Contact Us</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; <span id="year"></span> Eyelashesworld. All rights reserved.</span>
+        <span>PT Bintang Mas Triyasa</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const menuBtn = document.getElementById('hamburgerBtn');
+    const drawer = document.getElementById('mobileDrawer');
+
+    menuBtn.addEventListener('click', () => {
+      drawer.classList.toggle('open');
+      menuBtn.textContent = drawer.classList.contains('open') ? '✕' : '☰';
+    });
+
+    drawer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        drawer.classList.remove('open');
+        menuBtn.textContent = '☰';
+      });
+    });
+  </script>
+</body>
+</html>
